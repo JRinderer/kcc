@@ -1,0 +1,53 @@
+global
+
+proc
+ factorial (n : int        ) : int;
+ fibonacci (n : int        ) : int;
+ strange   (n : int,c : int);
+
+procedure main;
+ dcl
+ i     : int;
+ start : int;
+ count : int;
+
+begin {main}
+  for i := 1 to 20
+    writeln (i,' factorial is: ',factorial (i));
+  writeln;
+  for i := 0 to 20
+    writeln (i,' fibonacci is: ',fibonacci (i));
+  writeln;
+  write ('enter a positive integer: ');
+  readln (start);
+  count := 1;
+  call strange (start,count);
+end   {main}
+
+procedure factorial;
+begin {factorial}
+  if (n = 0)
+    then return 1;
+    else return n * factorial (n-1);
+end   {factorial}
+
+procedure fibonacci;
+begin {fibonacci}
+  if ((n = 0) or (n = 1))
+    then return 1;
+    else return fibonacci (n-1) + fibonacci (n-2);
+end   {fibonacci}
+
+procedure strange;
+begin {strange}
+  if ((n = 1) or (c = 20))
+    then do;
+         writeln;
+         return;
+         end;
+    else write (n,' ');
+  if (n % 2 = 0)
+    then call strange (n/2,c+1.5);
+    else call strange (3*n + 1,c+1);
+end   {strange}
+.

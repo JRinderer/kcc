@@ -1,0 +1,43 @@
+==================================README - KLUMP SCANNER - JRinderer===================================================
+---------OVERVIEW: This is a project for my graduate studies. The goal is to develop a compiler for a programming
+---------language using C to build a scanner/parser/compiler to ultimately translate the source code in X86_64 Assemlby.
+---------This README file will contain an overview (and be updated for my own notes) of the functions/headers/modules.
+---------It will be more general than the notes section, focusing on a higher level overview. If you're interested in
+---------more detailed notes please see the Notes text file. This contains my day-to-day notes as I work through the
+---------project. This README is incomplete, and will be updated as I make progress. I read an article on building a
+---------scanner in C, which I site below and offer the link to.
+***********************************************************************************************************************
+------------Developer - John Rinderer
+------------Date - 1/3/2018
+------------Developed Using:
+--------------------------C99 programming language
+--------------------------GCC Compiler Version: 5.4.0 & 7.2.1
+--------------------------CMake Version: 3.5 or 3.8
+--------------------------Ubuntu 16.04 LTS (NA) & Arch Linux 64 bit (4.14.9-1)
+--------------------------IDE: CLion
+--------------------------CMake files require RELOADING when switching between OS's or verions of CMake. See
+--------------------------Instructions section for further details.
+***********************************************************************************************************************
+---------Instructions:
+------------In order for CMake to work correctly you will need to either modify the attached CMake files
+------------or if you're using an IDE you can reload the CMakeLists.txt. This will re-apply any updates. If you're using
+------------an older version than 3.8 you'll need to modify CMakeLists.txt by finding the following:
+------------cmake_minimum_required(VERSION 3.8) and editing. As an example my Ubunutu Linux uses 3.5 I change this and
+------------reload CMake, which should resolve the problem. However, if your IDE does not allow you to easily reload
+------------CMake files then you can edit them yourself. You'll need to ensure the directory the files are located in
+------------changes. Your directory tree will be different than mine, editing these paths should resolve the CMake
+------------errors your encounter.
+***********************************************************************************************************************
+---------Sources:
+-----------Source code based on the following project: Original Source code From: Lexical Analyzer Project: Loc Nguyen
+-----------https://www.codeproject.com/Articles/833206/Lexical-analyzer-an-example This Source code above is being used
+-----------as a base to build a Compiler in the C Programming language. It serves as an example and reference only, and
+-----------will be modified. Source code files can be downloaded from the article listed on codeproject.com.
+***********************************************************************************************************************
+---------Functions Overview:
+------------main.c:
+--------------------------main(): function takes command line arguments, doesn't require the extension (appends),
+--------------------------verifies the file exists, verifies the file isn't empty, and checks the characters within the
+--------------------------the file to ensure they meet the overall criteria. Example - If some character that isn't
+--------------------------part of the language is present an error message with the character/word will be displayed and
+--------------------------the line. Once the verification is complete the main() calls getTokenType().

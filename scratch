@@ -1,0 +1,21 @@
+do{
+                lookAheadChr=getNxtPntdVal(filePntr);//This keeps looping back and never going to next line...
+                if(lookAheadChr=='}'){
+                    cmntOver==0;
+                }if(lookAheadChr!='\n'){
+                    cmntOver==1;
+                }
+            }while(cmntOver!=0);
+            fseek(filePntr,-1,SEEK_CUR);
+
+
+
+            while (endCmt==1){
+                            if(lookAheadChr=getNxtPntdVal(filePntr)=='}'){
+                                endCmt=0;
+
+                                goto restart;
+
+                            }else{
+                                endCmt==1;
+                            }

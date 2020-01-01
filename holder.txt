@@ -1,0 +1,41 @@
+global
+
+  const
+    pi      : 3.14159;
+    rad2    : 1.41421;
+    three   : 3;
+    five    : 5.0;
+    prompt1 : 'enter an integer number: ';
+    prompt2 : 'enter a  real    number: ';
+
+procedure main;
+
+  dcl
+    ix      : int;
+    iy      : int;
+    iz      : int;
+    rx      : real;
+    ry      : real;
+    rz      : real;
+
+begin { main }
+
+  write (prompt1);
+  readln (ix);
+  write (prompt1);
+  readln (iy);
+  writeln ('sum is: ',ix+iy);
+  write (prompt2);
+  readln (rx);
+  write (prompt2);
+  readln (ry);
+  rz := rx + ry;
+  writeln ('sum is: ',rz);
+
+  rz := pi*(ix*rx - iy*ry);
+  iz := rz;
+  writeln ('rz equals: ',rz);
+  writeln ('iz equals: ',iz);
+
+end  { main }
+.

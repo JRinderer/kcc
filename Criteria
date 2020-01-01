@@ -1,0 +1,92 @@
+   *****SUMMARY: Outlined below are the basic overall requirements for the KLUMP languaged as well as the types of:
+    *****{Characters, Numbers, Operators, etc} that will be found in the KLUMP. language. Brief description
+    *****will be provided.
+
+        - Requirements for Language: These are the general rules/criteria/actions/features the language must contain.
+            1. procedural.
+            2. Typed.
+            3. Fixed length types.
+            4. Allows structured data types (arrays, records, fixed length string literals).
+            5. No dynamic structures.
+            6. Global and local scope.
+            7. Require declaration before definition or reference.
+            8. Static allocation for global variables.
+            9. Automatic allocation for local variables (NO DYNAMIC ALLOCATION).
+            10. Call by value and call by variable (structured data types must be call by reference).
+            11. Recursion is permitted by default.
+            12. Return types are limited by atomic data types ONLY.
+
+        -Character set for KLUMP: These characters are either **char** or **int** types
+            1. A - Z (FORCE UPPER CASE ON ALL CHARACTERS) -- Break out into LETTERS TYPE?
+            2. 0 - 9 -- Break out into NUMBERS TYPE?
+
+        -Reserved Words for KLUMP: These words are key words that indicate some action for the compiler to take
+            1. AND
+            2. ARRAY
+            3. ASCII
+            4. BEGIN
+            5. BOOL
+            6. BREAK
+            7. CALL
+            8. CASE
+            9. CONST
+            10. CSTRING
+            11. DCL
+            12. DECIMAL
+            13. DEFAULT
+            14. DO
+            15. DOWNTO
+            16. ELSE
+            17. END
+            18. FOR
+            19. GLOBAL
+            20. GOTO
+            21. IF
+            22. INT
+            23. NEXT
+            24. NOT
+            25. NUMBER
+            26. OF
+            27. OR
+            28. PROC
+            29. PROCEDURE
+            30. READ
+            31. READLN
+            32. REAL
+            33. RECORD
+            34. RETURN
+            35. STRING
+            36. THEN
+            37. TO
+            38. TYPE
+            39. VAR
+            40. WHILE
+            41. WRITE
+            42. WRITELN
+
+         -Operators for KLUMP: These will need further work to break down into Sub groups mathematical vs operational.
+         These can be assigned a TOKEN that is their LEXEME.
+		A. Punctuation:
+	            1. :
+	            2. ;
+	            3. .
+	            4. (
+	            5. )
+	            6. {
+	            7. }
+	            8. [
+	            9. ]
+		B. Relational Operators:
+	            1. :=
+	            2. =
+	            3. <>
+	            4. <
+	            5. >
+	            6. <=
+	            7. >=
+	            8. +
+	            9. -
+	            10. *
+	            11. /
+	            12. %
+		23.#

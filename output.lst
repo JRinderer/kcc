@@ -1,0 +1,85 @@
+     1                                   
+     2                                  ;TEXT SECTION
+     3                                   
+     4                                  global main
+     5                                   
+     6                                  			section			.txt
+     7                                   
+     8                                  			extern			printf
+     9                                   
+    10 00000000 90                      main:		nop										;main PROC
+    11 00000001 55                      			push			rbp
+    12 00000002 4889E5                  			mov				rbp,rsp
+    13 00000005 6A64                    			push			100						;print numbers
+    14 00000007 8F0425[00000000]        			pop				qword [A]				;print assignments
+    15 0000000E 6A23                    			push			35						;print numbers
+    16 00000010 8F0425[08000000]        			pop				qword [B]				;print assignments
+    17 00000017 FF3425[00000000]        			push			qword [A]				;print identifiers
+    18 0000001E FF3425[08000000]        			push			qword [B]				;print identifiers
+    19 00000025 5B                      			pop				rbx						;print addition ops
+    20 00000026 58                      			pop				rax
+    21 00000027 4801D8                  			add				rax,rbx					;adds the contents of rax and rbx
+    22 0000002A 50                      			push			rax
+    23 0000002B FF3425[00000000]        			push			qword [A]				;print identifiers
+    24 00000032 5B                      			pop				rbx						;print multiplcation/division
+    25 00000033 58                      			pop				rax
+    26 00000034 BA00000000              			mov				rdx,0					;move a 0 into rdx
+    27 00000039 480FAFC3                			imul			rax,rbx					;multiply the two register
+    28 0000003D 50                      			push			rax
+    29 0000003E 8F0425[10000000]        			pop				qword [E]				;print assignments
+    30 00000045 FF3425[00000000]        			push			qword [A]				;print identifiers
+    31 0000004C 48BF-                   			mov				rdi,_INT_
+    31 0000004E [0000000000000000] 
+    32 00000056 5E                      			pop				rsi
+    33 00000057 B800000000              			mov				rax,0
+    34 0000005C E8(00000000)            			call			printf
+    35 00000061 48BF-                   			mov				rdi,_STR_
+    35 00000063 [0300000000000000] 
+    36 0000006B 48BE-                   			mov				rsi,_CRLF_
+    36 0000006D [0600000000000000] 
+    37 00000075 B800000000              			mov				rax,0
+    38 0000007A E8(00000000)            			call			printf
+    39 0000007F FF3425[08000000]        			push			qword [B]				;print identifiers
+    40 00000086 48BF-                   			mov				rdi,_INT_
+    40 00000088 [0000000000000000] 
+    41 00000090 5E                      			pop				rsi
+    42 00000091 B800000000              			mov				rax,0
+    43 00000096 E8(00000000)            			call			printf
+    44 0000009B 48BF-                   			mov				rdi,_STR_
+    44 0000009D [0300000000000000] 
+    45 000000A5 48BE-                   			mov				rsi,_CRLF_
+    45 000000A7 [0600000000000000] 
+    46 000000AF B800000000              			mov				rax,0
+    47 000000B4 E8(00000000)            			call			printf
+    48 000000B9 FF3425[10000000]        			push			qword [E]				;print identifiers
+    49 000000C0 48BF-                   			mov				rdi,_INT_
+    49 000000C2 [0000000000000000] 
+    50 000000CA 5E                      			pop				rsi
+    51 000000CB B800000000              			mov				rax,0
+    52 000000D0 E8(00000000)            			call			printf
+    53 000000D5 48BF-                   			mov				rdi,_STR_
+    53 000000D7 [0300000000000000] 
+    54 000000DF 48BE-                   			mov				rsi,_CRLF_
+    54 000000E1 [0600000000000000] 
+    55 000000E9 B800000000              			mov				rax,0
+    56 000000EE E8(00000000)            			call			printf
+    57 000000F3 4889EC                  			mov				rsp,rbp
+    58 000000F6 5D                      			pop				rbp
+    59 000000F7 B800000000              			mov				rax,0
+    60 000000FC C3                      			ret
+    61                                   
+    62                                  ;BSS Section
+    63                                   
+    64                                  			section				.bss
+    65                                   
+    66 00000000 <res 00000008>          A:			resq			1
+    67 00000008 <res 00000008>          B:			resq			1
+    68 00000010 <res 00000008>          E:			resq			1
+    69                                   
+    70                                  ;DATA Section
+    71                                   
+    72                                  			section				.data
+    73 00000000 256900                  _INT_    :	db					"%i",0x0
+    74 00000003 257300                  _STR_    :	db					"%s",0x0
+    75 00000006 0A00                    _CRLF_   :	db					0xa,0x0
+    76                                   

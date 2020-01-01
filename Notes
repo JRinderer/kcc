@@ -1,0 +1,402 @@
+===================================START INTRO AND SUMMARY=============================================================
+    This scratch.txt document will serve as the running notepad for the project. Other documentation may be written as
+    time goes on and the project advances, but this scratch.txt will serve as the active notepad. Below will be notes on
+    the compiler as a whole, as well as specific portions. Scanner, Parser, Linker, Assembly, etc. Each note entered
+    will be dated and boxed off for the relevant time/date it was entered like so:
+
+    Example:
+
+    ===================================12/31/2017 - START - 08:57 - JRinderer:=========================================
+        ******SUMMARY: Each section will contain a summary of the notes to follow. Today is Dec 31st 2017.
+        ---------------------------------------------------------------------------------------------------------------
+            -More Notes...
+            -...
+    ===================================12/31/2017 - END - 20:00 - JRinderer============================================
+
+    If a day's notes are subdivided for that day the format below will be used.
+
+    Example:
+
+    ===================================12/31/2017 - START - 08:57 - JRinderer:=========================================
+        ******SUMMARY: Each section will contain a summary of the notes to follow. Today is Dec 31st 2017.
+
+            -Today is December 31st 2017 and this noted repeats this information
+            -More Notes...
+        ---------------------------------------------------------------------------------------------------------------
+        ******SUMMARY: If the day's notes are subdivided then the format here will be used.
+            -This is a sub section of today's notes.
+            -This section will discuss the subdivision of notes.
+    ===================================12/31/2017 - END - 20:00 - JRinderer============================================
+
+
+    The format above will be followed throughout the notebook in order to break up time/dates and progress.
+
+    When edits are made to previous notes (for example if I re-write my types and sub-divide the operators into multiple
+    types they will be notated with in the START field, the edits will be made to the original with a **START DATE**
+    at the beginning and a **END DATE** where the edits ended. A copy of the original (only where changes made) will be
+    added to the bottom of that days note with the Original Date **ORIGINAL DATE and will be encolsed in *****
+
+    Example:
+
+    ===================================12/31/2017 - START - 09:01 - JRinderer **1/1/2018 JRinderer**:==================
+        **START 1/1/2018**
+        -Operators for KLUMP: These will need further work to break down into Sub groups mathematical vs operational
+               Mathematical: These will perform basic math:
+                    1. +
+                    2. -
+                    3. *
+                    4. /
+                    5. %
+               Comparison: These will compare values:
+                    6. <>
+                    7. <
+                    8. >
+                    9. =
+                    10. !=
+        **END 1/1/2018**
+
+        **ORIGINAL 12/31/2017 - JRinderer******************************************************************************
+           -Operators for KLUMP: These will need further work to break down into Sub groups mathematical vs operational
+               1. :
+               2. ;
+               3. .
+               4. (
+               5. )
+               6. {
+               7. }
+               8. [
+               9. ]
+               10. #
+        ***************************************************************************************************************
+    ===================================12/31/2017 - END - 11:01 - JRinderer **1/1/2018 JRinderer**:====================
+===================================END INTRO AND SUMMARY===============================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/3/2018 - START - 13:10 - JRinderer============================================
+    ********Summary:This is a rebuild of the sample code I found with a focus on re-writing the scanner portion to be
+    easier to read with more functions to trim down and simplify. Scanner can currently scan for Words. Need to output
+    to a .txt file.
+
+        -As data is scanned in add it to a TOKEN & LEXEME field. Currently each data point is stored within a word or a
+        number type. While we can loop through these values they need to be ordered as they appear. Doing this as the
+        text is scanned ensures that the order is followed.
+
+        -Regardless of Type store literal as LEXEME. Regardless of type store token as TOKEN. LEXEME and TOKEN are new
+        arrays that will be populated with the respective TOKEN or LEXEME.
+
+        -This allows us to store the values as they are scanned in, in the order in which they are scanned.
+
+        -Once all the data is scanned in we can loop through the LEXEME and TOKEN fields and print them to a file.
+
+        -General outline below:
+            1. Scan through all characters.
+            2. Determine if characters are words and if so are they KEYWORDS.
+            3. Determine Token TYPES from words (KEYWORD, CONSTANT)
+            4. Determine Token Types from chars (constants, identifiers)
+            5. Determine Token Types from ints (constants[numbers], decimals [number.number]
+            6. Determine Token Types from punctuations (consider making actual symbol (=(, {={, etc).
+            7. Determine Token Types from Operators (>, <, <>, etc).
+
+        -Based on the above critiera we can store the LEXEM and TOKEN type. Modify systemsdefs.h with the above data
+        structures.
+=======================================1/3/2018 - END - 21:11 - JRinderer==============================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/4/2018 - START - 11:00 - JRinderer============================================
+    ********Summary: Program can now read KEYWORDS and CONSTANTS from words (not int's yet). Will print the TOKEN and
+    the LEXEME. Need to format so that space between TOKEN and LEXEME is a standard length.
+
+        -Next step is to scan NUMBERS in and assign their TOKEN type as NUMBER.
+=======================================1/4/2018 - END 20:00 - JRinderer================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/6/2018 - START - 19:00 JRinderer==============================================
+    ********Summary: The program is reading int's but due to how I am printing them out INT's are getting missed in the
+    output. This is resulting in the TOKEN and LEXEME not always matching in cases wheren number is missing. If you
+    view the test.kl file you'll notice that there are three number constants. There are 3 additional tokens at the end
+    missing their LEXEME. This is due to how the data is printed in C.
+=======================================1/6/2018 - END - 21:00 - JRinderer==============================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================1/7/2018 - START 09:14 - JRinderer==============================================
+    ********Summary: How the 2d arrays are built and what elements seems to be causing some issue. If I use numi and
+    numj these start a 0 again, and thus will not match with the simple loop I built. Determining the best way to
+    allocate size for the array's we'll use.
+
+        -Structures - Restudy structures as it might be easier to assign data points based on a structure type.
+        Currently using STRINGS to call out the TOKEN type and pulling the LEXEME in along with it.
+
+        -Solutions to problem brought up in Summary. Drop wordi wordj numi numj variables. Keep a universal 2d array
+        loop variable as this will make reading easier and understanding what's going on. Keeping two different like
+        this can result in more confusing code. replaced wordi, wordj, numi, numj with intlArryi and intlArryj.
+
+        -Fixing a standard distance between tabs from TOKEN     LEXEME. Issue is with larger words and the tabs being
+        misaligned.
+
+        -Dynamically assigning array's as the scanner combs through characters. Based on largest word and number of
+        words contained in the source code file.
+
+            -Requires a function to determine the size of continuous data. This must be stored for the LENGTH of
+            individual words.
+
+            -Requires a method/function to determine total characters in the source code file. This will be the MAX
+            allowed characters, numbers, words etc.
+
+            -Requires another function to allocate the new size of the array.
+
+        -As of right now I can find KEYWORDS, CONSTANTS, and NUMBERS. They are labeled correctly with their appropriate
+        TOKEN and LEXEME in the format I want.
+
+        -Still need to grab operators and determine operators that do something from punctuations.
+
+        -Getting Segmentation falut when I attempt to write to a file. This was due to a mistake in understanding how
+        strcat worked. I was setting it as a variable when it's a function that applies a change to variables/strings/
+        chars.
+
+        -Program can now output to a text file in the project folder. Notes for future output destroy any existing file
+        assuming the user does not need previous work. This ensures that the new file that's being concatenated to is
+        fresh.
+
+        -Next steps: make test to determine other TOKE types - operators, punctuation, etc.
+
+=======================================1/7/2018 - END 18:11 - JRinderer================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/8/2018 - START 13:12 - JRinderer==============================================
+    ********Summary: With the program able to break out KEYWORDS, CONSTANTS, and NUMBERS generically the next step is
+    to break this down further. KEYWORDS can remain, CONSTANTS should be broken down into further, it already handles
+    NUMBERS but also need to break out decimals and ASCII. THESE will be additional TOKENS with their associated LEXEME.
+    The general TOKEN categories are listed below.
+
+        A. Notes on TOKENS/LEXEME possible adjustments and types.
+            1. CONSTANT - numbers, strings of chars. Can be broken down into NUMBER, ASCII, DECIMAL.
+            2. IDENTIFIER - X, BALANCE, and other variables the programmer might be setting up.
+            3. KEYWORDS - IF, THEN, PROGRAM etc. This are broken out and listed. CHANGE KEYWORD to be actual LEXEME.
+            4. OPERATORS - :=. +, etc, refine TOKEN to be actual symbol.
+            5. PUNCTUATION - {, {, ;, etc. Refine TOKEN to be actual symbol.
+
+        B. Break KEYWORD into the actual LEXEME being used as opposed to KEYWORD.
+        C. Break CONSTANT into NUMBER, ASCII, and DECIMAL.
+            1. Need a function to determine DECIMAL, NUMBER or ASCII.
+            2. This is sort of done, but not sure how to handle decimal. Possibly determine in the function that checks
+            to see if char is numeric, to also check for decimal.
+        D. For IDENTIFIER need to differentiate between: KEYWORDS and CONSTANTS.
+            1. Anything that is a single char, or a full word without some indicator is an IDENTIFIER.
+            2. Possibly need a new function to determine if a WORD is enclosed within "" or ''.
+        E. Re-read KLUMP Grammar, there's nothing for '' or "" and these are typically CHAR or STRING delimiters.
+        F. Added the relational operators and punctuation for the language toe systemdefs.h
+
+        -Updates: adjusted scanner.c to save the scanned text document as .scan and the text file to read from as
+        .klump.
+
+        -Closing notes - I don't see any notes on '' pr "" in the documentation for the course. Unsure of how the
+        language will look. It's possible we aren't using these features and perhaps the keywords will indicate this?
+
+=======================================1/8/2018 - END 19:24 - JRinderer================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/9/2018 - START - 20:00 - JRinderer============================================
+    ********Summary: added function for testing punctuation types. Seems to be causing a segmentation fault.
+
+        -This could be due to the size of the array being violated (still need to test and ensure bounds are protected).
+
+        -Not sure what falls under punctuations: < > <> = + ... etc. This needs to be addressed as well.
+=======================================1/9/2018 - END - 21:21 - JRinderer==============================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================1/10/2018 - START - 20:00 - JRinderer===========================================
+    ********Summary: Today I'm focusing on picking up the punctuations and making their token behavior mimic that of
+    key words.
+
+        -Completed the 2 dimensional aspect of punctuations. This includes <> >= <= :=.
+
+        -Not sure if I need to test, or build an array for 1 dimensional aspect of punctuation. It's possible that I
+        can get away with testing to determine if it's 2d, and if so build it like I did with words. Otherwise make the
+        TOKEN = CHAR and then populate as such. This would ensure I have proper error checking and might need to build
+        the 1d array regardless. So while I may not need to test for 1d array, I will still need it for error checking
+        most likely. It's also possible that non relevant characters COULD slip through this. Will test out without
+        1d array, it's commented out for now.
+
+        -Succesfully grabing NUMBERS CONSTANTS (this needs to be refined further as IDENTIFIERS are being considered
+        constants due to a misreading of the text. Correct this to consider CONSTANTS between ' ') and punctuations.
+=======================================1/10/2018 - END - 22:09 - JRinderer=============================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/11/2018 - START - 13:22 - JRinderer===========================================
+    ********Summary: Need to start working on a function to check for ''. This will help us determine any strings that
+    could exist. Some possible obstacles to think about: if ' shows up in the string we don't want to end strings
+    prematurely. This can include strings like There's or Johns'.
+
+        -Challenge: How to store the ' and compare it to the char passed to the function.
+
+        -NUMBER is being associated with the KEYWORD NUMBER and real INTEGERS. Possibly consider making real numbers
+        NUMERIC instead of NUMBER. True integers (whole numbers) are tracked as NUMERIC.
+
+        -Still need to find decimal numbers as punctuation is seperating them as different numbers.
+
+        -Solved storing the ' in a char variable for comparison with escape char \.
+
+        -To trim down size move all 2dArray functions into one. Send the type of char and compare.
+
+        -From a quick comparison of the demo scanner file I need to account for CSTRINGS, decimals, IDENTIFIERS are
+        showing up as CONSTANTS. This is due to not properly picking up CSTRINGS.
+
+        -Thoughts on writing a decimal function.
+            -Need to possibly create a new array type called decimal. This would also be a 2d array.
+            -When we build the array check to see if it has a decimal as it's next char. If so we're building as
+            decimal. Not sure if I can do this with the current setup.
+            -The current 2dArray builder is comparing the current char to see if it's a type sent to it (int).
+            -Possibly consider adding as second comparison to see if the next char is a . When testing for non-decimal
+            types simply send he same int so the || statement is essentially nullified.
+            -If so we can continue to build the decimal of numbers until we reach a non number or another.
+
+        -Thoughts on writing CSTRING function.
+            -Need to check if char is '.
+            -If so builds the chars into a word until another ' is detected. Once this is done the CSTRING is completed.
+
+        -Thoughts on IDENTIFIERS showing as CONSTANTS.
+            -This might actually be easy to resolve without much change.
+            -Since no identifier will contain a ' we can change the CONSTANT portion in the current word code to be an
+            identifier.
+            -Will still need to check for CSTRING this will need to be added to the word code.
+=======================================1/11/2018 - END - 20:43 - JRinderer=============================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================1/25/2018 - START - 19:53 - JRinderer============================================
+    ********Summary:Run the test input and exam output against against the provided docs. Issue seems to be occuring
+    )); character. This seems to merge them together instead of keep them seperated.
+
+        -This is due to me not differentiating between chars that are 2d and 1d. The function is building the chars
+        into a 2d array regardless. I need to test to determine if the char is one of the chars from the 2d array.
+
+        -A possible issue I need to consider with this is the fact that some chars are 2d and some are not. = for
+        example is a 1d char. I need to also look ahead and see if the char AFTER the current char exists as a 2d array.
+        If so then it could be a 2d array. Must rewrite this function.
+
+        -Still need to write a function to see if a '' is present and if it's a string.
+
+        -Due to the complexity I've found in scanning chars and building them into words I've re-added the 2dArray
+        Builder for Operators. This builder also uses another function to ensure that the next character is a relevant.
+        A flaw in the initial build is that it doesn't also ensure that the character relationship is valid. Example:
+        := and =: are both valid; though this violates the rules. Need to also ensure that the word being built is a
+        valid.
+=======================================1/27/2018 - END - 22:30 - JRinderer - SPECIAL NOTE==============================
+    ********Special note: Due to hard resetting my github on these some notes were lost. This was due to moving back
+    and forth between 2 computers while I resolved the bugs. Specifically in getting rid of comments. Since then I've
+    also resolve the bugs with the building of operators (<>, := etc) This error was due to how I was scanning. I was
+    not effectively checking to ensure that the chars I was feeding to the scanner as 2d array's were in fact a valid
+    word. I resolved this, as well as the comments. The key was to check each char that was a punctuation and then
+    validate it against an array of chars that make up the 2d punctuations. Once this was done I used a temporary array
+    to store the word, and then compare it to the 2d array list to ensure that the word was valid. The comments code
+    was fairly simple to work out and should be self explanatory with the comments. It will be marked off with the below
+    ===========COMENT CODE============= so that it can easily be found.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================1/28/2018 - START - 10:29 - JRinderer===========================================
+    ********Summary: Comments and 2d arrays are now handled correctly. The next step is to account for strings. Since
+    2d and 1d punctuations should now be handled correctly I should be able to use similar code to the comments loop to
+    implement a "stringBuilder" function and set the token as CSTRING.
+
+        -Able to reproduce the same results as Doc on the test.klump and test.scan exception is ASCII... emailed in
+        regards to difference between ASCII and CSTRING.
+
+        -Scanner should now be completed. Will test on other files to see how scanner handles them, then compare to
+        Docs.
+
+        -If we need to add ASCII we need to determine how we figure out what's an ASCII vs a CSTRING. At what point
+        does a char become a CSTRING or ASCII?
+=======================================1/28/2018 - END - TIME - JRinderer==============================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================2/6/2018 - Start - 20:01 - JRinderer============================================
+    ********Summary: Still need to handle decimals correctly. They are currently split up as 1 . 5. This can be handled
+    later as I believe this will be simple enough in the future.
+=======================================2/6/2018 - END - 22:00 - JRinderer==============================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================START PARSER NOTES RETURN TO SCANNER LATER======================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================2/10/2018 - START - 08:00 - JRinderer===========================================
+    ********Summary: Began work on parser, use functions within scanner to build words, test these words against the
+    various productions rules according to PAL. Notes below will outline some of this, as well as error, mistakes that
+    I have noticed and potentional issues.
+
+        -Overall plan:
+            1. First we need to use the 2d array builder to build the words from the chars.
+            2. We don't want to skip the LEXEME as we want to ensure that the logic meets the criteria.
+            3. Might be best to store words as sep entities. TOKEN and LEXEME to ensure that they meet the correct logic
+            4. Need a method to get the TOKEN and then the LEXEME immediately after. Store these in two variables
+               and then pass them to a function for testing.
+                4a. Possibly write a function that will detect when we've hit a /t char and then act accordingly?
+                4b. If a /t is detected store the chars within the LEXEME word string.
+=======================================2/10/2018 - END - 20:00 JRinderer===============================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================2/12/2018 - START - JRinderer===================================================
+    ********Summary: Working on parser... for some reason lexeme seems to be storing either the '\t' or the '\0' which
+    appears to be bumping it down a line. It also seems to be dropping the first letter.
+        -Some portions of the CHARS seem to be hanging on and printing
+
+=======================================2/12/2018 - END - JRinderer=====================================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================2/14/2018 - START - JRinderer===================================================
+    *******Summary: Still working on storing chars into words to then make comparison and parse. This was resolved.
+    Issue revolved around properly storing the TOKEN and LEXEME with different int's for array's and adding a total
+    count variable that could store the overall position. Currnently dividing by 2 for the TOKEN and LEXEME. Might find
+    a method to avoid/simplify this later. Next step is to take these two "strings" and then parse them.
+======================================2/14/2018 - END - JRinderer======================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+======================================2/18/2018 - START - JRinderer====================================================
+    ********Summary: Parser seems to be having issues with the + and - signs. This is causing it to throw an error when
+    it should be clear. Testing with smaller code to verify. This was resolved after debugging and finding the
+    comparison I was making should have been an && statement and not a || statement. I also referenced an incorrect
+    funciton which resulted in contiunal recursion and ultimately a segmentation fault. Next step is to translate the
+    .scan file into assembly language.
+======================================2/18/2018 - END - JRinderer======================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+======================================3/2/2018 - START - JRinderer=====================================================
+    ********Summary: Able to successfully translate a .pal program into X86_64 Assembly and compile with NASM into a
+    functioning program. Some things to consider: Possibly build a function that can be use in the SCANNER and the
+    PARSER. This funcitons purpose would be to build chars into words. Right now the SCANNER and PARSER both are
+    doing a similar task and building into an array. Focus from here forward will be on generating X86_64 Assemlby
+    for .klump language. 
+    
+        -Overview: KLUMP NEEDS
+            1. Need to detect and build decimal numbers. These could be x.xxxx or .xxx
+            2. Modify parser for more complex  tasks based on KLUMP grammar.
+            3. Build functions for building tables and tracking variables (literals and such).
+            This should include the variable, it's type, and the table identifier _L1_ for example.
+            4. Add Symbol Tables
+                -Variable Identifier
+                -Data type
+                -Location in memory (global or local)
+                -updatable or named constant
+                -If named it's constant
+                -NAMED CONSTANTS WILL APPEAR IN THE .data
+                -UPDATABALE VARIABLES WILL APEAR IN .bss
+=======================================3/2/2018 - END - JRinderer======================================================
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=======================================3/5/2018 - START - JRinderer====================================================
+    ********Summary: First I'll add the ability to build decimals into the scanner. Then we'll start with the symbol
+    table.
+
+        -I've reverted back to a function specifically for building numbers. It handles both regular ints as well as
+        decimal ints. Consider possible alternative to this as it seems sloppy.
+
+        -Next is to create a symbol table. This table needs to store the variable identifier, the data type, the
+        location in memory (global or local), whether it's updatable or a named constant. We also might want to also
+        add to the function the ability to determine whether it will write to the .bss or .data
+=======================================3/5/2018 - END - JRinderer======================================================
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+=======================================3/11/2018 - START - JRinderer===================================================
+    ********Summary: Adding in the symbol table functions. After reading through docs source code I should initate the
+    tables within the parser proc. First we search line 289 in main cpp. Left off reading on line 213.
+=======================================Final Notes on Review===========================================================
+    The scanner is missing CONST and other variable names that contain numbers due to how I originally started detecting
+    them. I need a method to keep all strings of chars connected regardless of type.
+
+

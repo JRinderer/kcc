@@ -6,8 +6,6 @@
 #ifndef SCANNER01_TABLES_H
 #define SCANNER01_TABLES_H
 
-#include <lzma.h>
-
 typedef char Str100[10000];
 
 #define SIZE 800

@@ -10,6 +10,8 @@
 #include "assmblr.h"
 #include "tables.h"
 
+//this is a comment I am adding. I believe the error is in this parser
+
 char token[LIMIT][MAX];
 char lexem[LIMIT][MAX];
 int arryC=0;
